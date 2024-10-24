@@ -1,0 +1,51 @@
+// App.jsx
+import React from 'react';
+import Home from './component/Home';
+import MainLayout from './component/MainLayout';
+import AuthForm from './component/AuthForm';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import Profile from './component/Profile';
+
+// Configure routes
+const browserRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />, // Render MainLayout at the root
+    children: [
+      // {
+      //   path: "/",
+      //   element: <MainLayout/>, // Redirect root path to /signup
+      // },
+      {
+        path: "/home",
+        element: <Home />, // Home component as nested route
+      },
+      {
+        path: "/profile",
+        element: <Profile />, // Profile component as nested route
+      },
+    ],
+  },
+  {
+    path: "/signup",
+    element: <AuthForm />, // Sign Up page
+  },
+  {
+    path: "/login",
+    element: <AuthForm />, // Login page
+  },
+]);
+
+// Main App Component
+function App() {
+  return (
+    <div className="App">
+      <RouterProvider router={browserRouter} />
+      <ToastContainer />
+    </div>
+  );
+}
+
+export default App;
